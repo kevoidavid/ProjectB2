@@ -1,0 +1,549 @@
+from pathlib import Path  # core python module
+
+YR = 2022
+import random
+import win32com.client  # pip install pywin32
+# get_inputs
+try:
+
+    name = input('enter Place.. ')
+    Main = name.upper()
+    county = input('enter  name... ')
+    gender = input('GENDER M or F... ')
+    G = gender.upper()
+    L = ''
+    if G == 'M':
+        L = 'MALE'
+    else:
+        L = 'FEMALE'
+    DOB = input('enter D.O.B.. ')
+    SL = input('enter sl... ')
+    MM = input('enter Mums name... ')
+    FF = input('enter fathers name... ')
+
+    KISII = ['KISII', 'NYANZA', 'KSI', 'Z.B MACHOME', '016', ' S.K MELI10 ']
+    KWALE = ['KWALE', 'COAST', 'KWL', 'D.MATHEI', '018', ' ']
+    MIGORI = ['MIGORI', 'NYANZA', 'MGR', 'J.M.OLOL.TULET', '078', '3']
+    NAKURU = ['NAKURU', 'RIFT VALLEY', 'NKU', 'S.K MELI', '027', 'DAVE MUTAI']
+    NAIROBI = ['NAIROBI', 'NAIROBI', 'NRB', 'JOYCE CHEPKEITANY', '026', 'E.A ATITO']
+    MOMBASA = ['MOMBASA', 'COAST', 'MSA', 'L.MASHARL', '025', 'J ONYISI']
+    KISUMU = ['KISUMU', 'NYANZA', 'KSM', 'A.O OMONDI', '042', 'W.S ISAGI']
+    NYERI = ['NYERI', 'CENTRAL', 'NYR', 'J.N NDATHO', '031', 'S.M KABURU']
+    GUCHA = ['GUCHA', 'NYANZA', 'GCA', 'P.K OTIENO', '055', 'H.D KOLA11']
+    NYAMIRA = ['NYAMIRA', 'NYANZA', 'NYAM', 'J.M GORI', '076', '1']
+    BARINGO = ['BARINGO', 'RIFT VALLEY', 'BGO', 'M.A MUSHIYI', '042']
+    BOMET = ['BOMET', 'RIFT VALLEY', 'BMT', 'R.K KORIR', '081']
+    BUNGOMA = ['BUNGOMA', 'WESTERN', 'BGM', 'H.ORENG', '002']
+    BUSIA = ['BUSIA', 'WESTERN', 'BSA', 'J.M.OLOL.TULET', '003']
+    HOMABAY = ['HOMA BAY', 'NYANZA', 'HB', 'V A ONYANGO', '033']
+    KAKAMEGA = ['KAKAMEGA', 'WESTERN', 'KKG', 'TITUS.M.MAINA', '011', 'R.K.WESONGA']
+    KALOLENI = ['KALOLENI', 'COAST', 'KLN', 'M.N MUTAVI', '091']
+    KIRINYAGA = ['KIRINYAGA', 'CENTRAL', 'KRG', 'E.M MUGAMBI', '015']
+    KITUI = ['KITUI', 'EASTERN', 'KTI', 'H.T MWANIKI', '017']
+    KWANZA = ['KWANZA', 'EASTERN', 'KWZ', 'ERICK.K.SHIVANDA', '142']
+    LAMU = ['LAMU', 'COAST', 'LMU', 'C.S BUYA', '020']
+    MURANGA = ['MURANGA EAST', 'CENTRAL', 'MRG', 'J.N MWANGI', '007', ' S.K MELI10 ']
+    KILIFI = ['KILIFI', 'COAST', 'KLF', 'K.S MOHAMMED', '014', ' S.K MELI10 ']
+    MARAKWET = ['MARAKWET', 'RIFT VALLEY', 'MKT', 'E.T KATONON', '051']
+    ISIOLO = ['ISIOLO', 'EASTERN', 'ISL', 'Z.S ROTICH', '009']
+    GARISSA = ['GARISSA', 'NORTH EASTERN', 'GRS', 'A.O OMONDI', '008']
+    TURKANA = ['TURKANA', 'RIFT VALLEY', 'TKN', 'A.O OMONDI', '009']
+    TAITA = ['TAITA TAVETA', 'COAST', 'TVT', 'J.M MSHILA', '088']
+    KERICHO = ['KERICHO', 'RIFT VALLEY', 'KCO', 'M.N KHAYOTA', '012']
+    BURETI = ['BURETI', 'RIFT VALLEY', 'BRT', 'A.M OMWENGA', '061']
+    MACHAKOS = ['MACHAKOS', 'EASTERN', 'MCA', 'SHUMARY M.K', '021']
+    MOLO = ['MOLO', 'RIFT VALLEY', 'MLO', 'B.K OMWERI', '151']
+    KAJIADO = ['KAJIADO', 'RIFT VALLEY', 'KJD', 'L.G MUREITHI', '010']
+    THIKA = ['THIKA', 'CENTRAL','TKA', 'YONNIE E.O', '036']
+    NANDI = ['NANDI', 'RIFT VALLEY', 'NDI', 'D.K MENGICH', '028']
+    KURIA = ['KURIA', 'NYANZA', 'KUR', 'G.G MARORO', '046']
+    KILINDINI = ['KILINDINI', 'COAST', 'KLD', 'M.N KINYUA', '089']
+    LIMURU = ['LIMURU', 'CENTRAL', 'LMR', 'P.K MAINGI', '066']
+    KINANGO = ['KINANGO', 'COAST', 'KNG', 'W.I WAISHE', '090']
+    TANA = ['TANA RIVER', 'COAST', 'TRV', 'C.S BUYA', '035']
+    MAKUENI = ['MAKUENI', 'EASTERN', 'MKN', 'E.K MUBIA', '077']
+    NYAMACHE = ['NYAMACHE', 'NYANZA', 'NYA', 'C.L NYONGESA', '254']
+    BORABU = ['BORABU', 'NYANZA', 'BRB', 'D.O OLUOCH', '119']
+    VIHIGA = ['VIHIGA', 'WESTERN', 'VHG', 'K. M MUGASIA', '079']
+    BUTERE = ['BUTERE', 'WESTERN', 'BTR', 'T.L LOMANIKO', '059']
+    UASIN = ['UASIN GISHU', 'RIFT VALLEY', 'U.G', 'G.P OKONGO', '039']
+    LUGARI = ['LUGARI', 'WESTERN', 'LUG', 'J.B KIPKORIR', '056']
+    MERU = ['MERU CENTRAL', 'EASTERN', 'MRU', 'M.N NJAGI', '024']
+    NZOIA = ['TRANS NZOIA', 'RIFT VALLEY', 'T.N', 'T.M CHIRCHIR', '037']
+    EASTBUNGOMA = ['BUNGOMA EAST', 'WESTERN', 'BGO.E', 'ALFRED P.MASAI', '131']
+    SOUTHTHARAKA = ['THARAKA SOUTH', 'EASTERN', 'T.S', 'S.M KABURU', '065']
+    MUMIAS = ['MUMIAS', 'WESTERN', 'MMS', 'E.K IPIO', '129']
+    NORTHMASABA = ['MASABA NORTH', 'NYANZA', 'MSB', 'M.W ATEKAH', '121']
+    HAMISI = ['HAMISI', 'WESTERN', 'HMS', 'N.A KIGIKA', '127']
+    SIAYA = ['SIAYA', 'NYANZA', 'SYA', 'N.A ARUNGA', '043']
+    KOIBATEK = ['KOIBATEK', 'RIFT VALLEY', 'KBT', 'R.J AYAIBEI', '042']
+    GATUNDU = ['GATUNDU ', 'CENTRAL', 'GTD', 'J.N MWANGI','065']
+    NORTHNYANDARUA = ['NYANDARUA NORTH', 'CENTRAL', 'NDA', 'J.N KARAGO', '030']
+    EMBU = ['EMBU', 'EASTERN', 'EMB', 'MAINA MWARERI', '060']
+    SOUTHGUCHA = ['GUCHA SOUTH', 'NYANZA', 'S.G','P.O OBUON', '118']
+    NYANDO = ['NYANDO', 'NYANZA', 'NYD', 'C.A ONYANGO', '062']
+    SAMIA = ['SAMIA', 'WESTERN', 'SAMIA', 'A.O ONYANGO', '133']
+    NORTHKAKAMEGA =  ['KAKAMEGA NORTH', 'WESTERN', 'KKG.E', 'ERICK K SHIRANDA', '069']
+    GITHUNGURI = ['GITHUNGURI', 'CENTRAL', 'GTR', 'O.N NGANGA', '166']
+    TRANS_NZOIA_EAST = ['TRANS NZOIA EAST', 'RIFT VALLEY', 'T.N.E', 'R.N SIMIYU', '073']
+    TESO = ['TESO', 'WESTERN', 'TSO', 'R.J AYAIBEI', '052']
+    EMUHAYA = ['EMUHAYA', 'WESTERN', 'EMH', 'J.K.AMIMO', '128']
+    EASTLAIKIPIA = ['LAIKIPIA EAST', 'RIFT VALLEY', 'LKP', 'E.K NGUNJIRI', '019']
+    NAIVASHA = ['NAIVASHA', 'RIFT VALLEY', 'NVS', 'D.I NGINGE', '085']
+    KEIYO = ['KEIYO', 'RIFT VALLEY', 'KYO', 'D.N LODIAKA', '053']
+    KIGUMO = ['KIGUMO', 'CENTRAL', 'KIG', 'J.M KAMAU', '157']
+    EASTKIENI =[ 'KIENI EAST', 'CENTRAL', 'KIN.E', 'A.N WAGURA', '067']
+    MANDERA = ['MANDERA', 'NORTH EASTERN', 'MDR', 'A.M KAMUTI', '022']
+    NAROK = ['NAROK', 'RIFT VALLEY', 'NRK', 'D.J MASINDE', '029']
+    NYANDARUA = ['NYANDARUA CENTRAL', 'CENTRAL', 'NDA', 'A.K MWANGI', '068']
+    NORTHMERU = ['MERU NORTH', 'EASTERN', 'MRU', 'R.M MITU', '048']
+    MOYALE = ['MOYALE', 'EASTERN', 'MYL', 'J.K MALEKA', '053']
+    SOUTHMURANGA = ['MURANGA SOUTH', 'CENTRAL', 'MRG.S', 'P.M MWANGI', '054']
+    LOITOKTOK = ['LOITOKTOK', 'RIFT VALLEY', 'LKT', 'GACHIE I.F', '153']
+    TRANS_MARA = ['TRANSMARA', 'RIFT VALLEY', 'T.M', 'R.O MOKAYA', '047']
+    WESTPOKOT = ['WEST POKOT', 'RIFT VALLEY', 'PKT', 'E.K KATANON', '044']
+
+
+
+
+    # my fomula
+    llist2 = [KILIFI, MURANGA, KISII, KWALE, MIGORI, MOMBASA, NAKURU, LAMU, KWANZA, KITUI, KIRINYAGA, KALOLENI,
+              KAKAMEGA, HOMABAY, BUSIA, BUNGOMA, BOMET, BARINGO, NYAMIRA, GUCHA, NYERI, KISUMU, NAIROBI, WESTPOKOT, TRANS_MARA, LOITOKTOK, SOUTHMURANGA, MOYALE, NORTHMERU, NYANDARUA, NAROK, MANDERA, EASTKIENI, KIGUMO, KEIYO, NAIVASHA, EASTLAIKIPIA, EMUHAYA, TESO, TRANS_NZOIA_EAST, GITHUNGURI, NORTHKAKAMEGA, SAMIA, NYANDO, SOUTHGUCHA, EMBU, NORTHNYANDARUA, GATUNDU, KOIBATEK, SIAYA, HAMISI, NORTHMASABA, MUMIAS, SOUTHTHARAKA, EASTBUNGOMA, NZOIA, MERU, LUGARI, UASIN, BUTERE, VIHIGA, BORABU, NYAMACHE, MAKUENI, TANA, KINANGO, LIMURU, KILINDINI, KURIA, NANDI, THIKA, KAJIADO, MOLO, MACHAKOS, BURETI, KERICHO, TAITA, TURKANA, GARISSA, ISIOLO, MARAKWET]
+    llist1 = ['KILIFI', "MURANGA", 'KISII', 'KWALE', 'MIGORI', 'MOMBASA', "NAKURU", "LAMU", 'KWANZA', "KITUI",
+              "KIRINYAGA", 'KALOLENI', 'KAKAMEGA', "HOMABAY", "BUSIA", "BUNGOMA", "BOMET", "BARINGO", "NYAMIRA",
+              "GUCHA", 'NYERI', "KISUMU", "NAIROBI", 'WESTPOKOT', 'TRANS_MARA', 'LOITOKTOK', 'SOUTHMURANGA', 'MOYALE', 'NORTHMERU', 'NYANDARUA', 'NAROK', 'MANDERA', 'EASTKIENI', 'KIGUMO', 'KEIYO', 'NAIVASHA', 'EASTLAIKIPIA', 'EMUHAYA', 'TESO', 'TRANS_NZOIA_EAST', 'GITHUNGURI', 'NORTHKAKAMEGA', 'SAMIA', 'NYANDO', 'SOUTHGUCHA', 'EMBU', 'NORTHNYANDARUA', 'GATUNDU', 'KOIBATEK', 'SIAYA', 'HAMISI', 'NORTHMASABA', 'MUMIAS', 'SOUTHTHARAKA', 'EASTBUNGOMA', 'NZOIA', 'MERU', 'LUGARI', 'UASIN', 'BUTERE', 'VIHIGA', 'BORABU', 'NYAMACHE', 'MAKUENI', 'TANA', 'KINANGO', 'LIMURU', 'KILINDINI', 'KURIA', 'NANDI', 'THIKA', 'KAJIADO', 'MOLO', 'MACHAKOS', 'BURETI', 'KERICHO', 'TAITA', 'TURKANA', 'GARISSA', 'ISIOLO', 'MARAKWET']
+    x = (llist1.index(Main))
+    T = (llist2[x])
+
+    mt = (9, 10, 11)
+    AUTH = random.randint(1055, 1307)
+    CA = random.randint(1344, 1900)
+    dt = random.randint(3, 31)
+    MT = random.choice(mt)
+    ET = random.randint(5700, 7985)
+    ET1 = random.randint(59000, 80099)
+    ET2 = (ET, ET1)
+    ET3 = random.choice(ET2)
+    ENTRY = (f'L.{T[4]}22{ET1}')
+    ENTRY2 = (F'L.{T[4]}0{ET}/22')
+    ENTRY3 = (ENTRY, ENTRY2)
+    ENTRY4 = random.choice(ENTRY3)
+
+    DT = (f'{dt}/{MT}/{YR}')
+
+    if MT == 9:
+        is_true = True
+    else:
+        is_true = False
+
+    if is_true:
+        z = 'September'
+    elif (MT == 10):
+        z = 'October'
+    else:
+        z = 'November'
+
+    RO = (f'{dt} {z}, {YR}')
+
+    print(' ')
+    print(T[0] + ' ' + T[1] + ' ' + T[2] + ' ' + T[3])
+    print(' ')
+    print('Registered on ', RO, 'ENTRY NO ', ENTRY4)
+    print(' ')
+    bb = (f'AUTH NO.{AUTH}/{T[2]} CA OF {DT}')
+    cc = (f'{T[2]}/CA NO.{CA} OF {DT}')
+
+
+    # Path settings
+    current_dir = Path(__file__).parent if "__file__" in locals() else Path.cwd()
+    input_dir = current_dir / "input"
+    output_dir = current_dir / "output"
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    # Find & replace
+
+    find_str = "A"
+    replace_with = T[0]
+
+    find_strA = 'B'
+    replace_withA = T[1]
+
+    find_str1 = ["1"]
+    replace_with1 = ENTRY4
+
+    find_str2 = "2"
+    replace_with2 = f"{SL}"
+
+    find_str3 = "3"
+    replace_with3 = f'{county}'
+
+    find_str4 = "4"
+    replace_with4 = f"{DOB}"
+
+    find_str5 = "5"
+    replace_with5 = L
+
+    find_str6 = "6"
+    replace_with6 = FF
+
+    find_str7 = "7"
+    replace_with7 = MM
+
+    find_str8 = "8"
+    replace_with8 = "Sgd; Self"
+
+    find_str9 = "9"
+    replace_with9 = f"{T[3]}"
+
+    find_str10 = "0"
+    replace_with10 = f"{T[3]}"
+
+    find_str11 = "2022"
+    replace_with11 = f"{T[0]}"
+
+    find_str12 = "2027"
+    replace_with12 = f"{RO}"
+
+    find_str13 = "2023"
+    replace_with13 = f"{bb}\n{cc}"
+
+    find_strB = "2024"
+    replace_withB = f"{dt}"
+
+    find_strC = "2025"
+    replace_withC = f"{MT}"
+
+    find_strD = "2026"
+    replace_withD = f"{YR}"
+
+    wd_replace = 2
+    wd_find_wrap = 1
+
+    # Open Word
+    word_app = win32com.client.DispatchEx("Word.Application")
+    word_app.Visible = False
+    word_app.DisplayAlerts = False
+
+    for doc_file in Path(input_dir).rglob("*.doc*"):
+        # Open each document and replace string
+        word_app.Documents.Open(str(doc_file))
+        # API documentation: https://learn.microsoft.com/en-us/office/vba/api/word.find.execute
+        word_app.Selection.Find.Execute(
+            FindText=find_str,
+            ReplaceWith=replace_with,
+            Replace=wd_replace,
+            Forward=True,
+            MatchCase=True,
+            MatchWholeWord=False,
+            MatchWildcards=True,
+            MatchSoundsLike=False,
+            MatchAllWordForms=False,
+            Wrap=wd_find_wrap,
+            Format=True,
+        )
+        word_app.Selection.Find.Execute(
+            FindText=find_str1,
+            ReplaceWith=replace_with1,
+            Replace=wd_replace,
+            Forward=True,
+            MatchCase=True,
+            MatchWholeWord=False,
+            MatchWildcards=True,
+            MatchSoundsLike=False,
+            MatchAllWordForms=False,
+            Wrap=wd_find_wrap,
+            Format=True,
+        )
+
+        word_app.Selection.Find.Execute(
+            FindText=find_str2,
+            ReplaceWith=replace_with2,
+            Replace=wd_replace,
+            Forward=True,
+            MatchCase=True,
+            MatchWholeWord=False,
+            MatchWildcards=True,
+            MatchSoundsLike=False,
+            MatchAllWordForms=False,
+            Wrap=wd_find_wrap,
+            Format=True,
+        )
+
+        word_app.Selection.Find.Execute(
+            FindText=find_str3,
+            ReplaceWith=replace_with3,
+            Replace=wd_replace,
+            Forward=True,
+            MatchCase=True,
+            MatchWholeWord=False,
+            MatchWildcards=True,
+            MatchSoundsLike=False,
+            MatchAllWordForms=False,
+            Wrap=wd_find_wrap,
+            Format=True,
+        )
+
+        word_app.Selection.Find.Execute(
+            FindText=find_str4,
+            ReplaceWith=replace_with4,
+            Replace=wd_replace,
+            Forward=True,
+            MatchCase=True,
+            MatchWholeWord=False,
+            MatchWildcards=True,
+            MatchSoundsLike=False,
+            MatchAllWordForms=False,
+            Wrap=wd_find_wrap,
+            Format=True,
+        )
+        word_app.Selection.Find.Execute(
+            FindText=find_str5,
+            ReplaceWith=replace_with5,
+            Replace=wd_replace,
+            Forward=True,
+            MatchCase=True,
+            MatchWholeWord=False,
+            MatchWildcards=True,
+            MatchSoundsLike=False,
+            MatchAllWordForms=False,
+            Wrap=wd_find_wrap,
+            Format=True,
+        )
+
+        word_app.Selection.Find.Execute(
+            FindText=find_str6,
+            ReplaceWith=replace_with6,
+            Replace=wd_replace,
+            Forward=True,
+            MatchCase=True,
+            MatchWholeWord=False,
+            MatchWildcards=True,
+            MatchSoundsLike=False,
+            MatchAllWordForms=False,
+            Wrap=wd_find_wrap,
+            Format=True,
+        )
+
+        word_app.Selection.Find.Execute(
+            FindText=find_str7,
+            ReplaceWith=replace_with7,
+            Replace=wd_replace,
+            Forward=True,
+            MatchCase=True,
+            MatchWholeWord=False,
+            MatchWildcards=True,
+            MatchSoundsLike=False,
+            MatchAllWordForms=False,
+            Wrap=wd_find_wrap,
+            Format=True,
+        )
+
+        word_app.Selection.Find.Execute(
+            FindText=find_str8,
+            ReplaceWith=replace_with8,
+            Replace=wd_replace,
+            Forward=True,
+            MatchCase=True,
+            MatchWholeWord=False,
+            MatchWildcards=True,
+            MatchSoundsLike=False,
+            MatchAllWordForms=False,
+            Wrap=wd_find_wrap,
+            Format=True,
+        )
+        word_app.Selection.Find.Execute(
+            FindText=find_str9,
+            ReplaceWith=replace_with9,
+            Replace=wd_replace,
+            Forward=True,
+            MatchCase=True,
+            MatchWholeWord=False,
+            MatchWildcards=True,
+            MatchSoundsLike=False,
+            MatchAllWordForms=False,
+            Wrap=wd_find_wrap,
+            Format=True,
+        )
+
+        word_app.Selection.Find.Execute(
+            FindText=find_str10,
+            ReplaceWith=replace_with10,
+            Replace=wd_replace,
+            Forward=True,
+            MatchCase=True,
+            MatchWholeWord=False,
+            MatchWildcards=True,
+            MatchSoundsLike=False,
+            MatchAllWordForms=False,
+            Wrap=wd_find_wrap,
+            Format=True,
+        )
+
+        word_app.Selection.Find.Execute(
+            FindText=find_str11,
+            ReplaceWith=replace_with11,
+            Replace=wd_replace,
+            Forward=True,
+            MatchCase=True,
+            MatchWholeWord=False,
+            MatchWildcards=True,
+            MatchSoundsLike=False,
+            MatchAllWordForms=False,
+            Wrap=wd_find_wrap,
+            Format=True,
+        )
+
+        word_app.Selection.Find.Execute(
+            FindText=find_str12,
+            ReplaceWith=replace_with12,
+            Replace=wd_replace,
+            Forward=True,
+            MatchCase=True,
+            MatchWholeWord=False,
+            MatchWildcards=True,
+            MatchSoundsLike=False,
+            MatchAllWordForms=False,
+            Wrap=wd_find_wrap,
+            Format=True,
+        )
+        word_app.Selection.Find.Execute(
+            FindText=find_str13,
+            ReplaceWith=replace_with13,
+            Replace=wd_replace,
+            Forward=True,
+            MatchCase=True,
+            MatchWholeWord=False,
+            MatchWildcards=True,
+            MatchSoundsLike=False,
+            MatchAllWordForms=False,
+            Wrap=wd_find_wrap,
+            Format=True,
+        )
+
+        word_app.Selection.Find.Execute(
+            FindText=find_strA,
+            ReplaceWith=replace_withA,
+            Replace=wd_replace,
+            Forward=True,
+            MatchCase=True,
+            MatchWholeWord=False,
+            MatchWildcards=True,
+            MatchSoundsLike=False,
+            MatchAllWordForms=False,
+            Wrap=wd_find_wrap,
+            Format=True,
+        )
+
+        word_app.Selection.Find.Execute(
+            FindText=find_strB,
+            ReplaceWith=replace_withB,
+            Replace=wd_replace,
+            Forward=True,
+            MatchCase=True,
+            MatchWholeWord=False,
+            MatchWildcards=True,
+            MatchSoundsLike=False,
+            MatchAllWordForms=False,
+            Wrap=wd_find_wrap,
+            Format=True,
+        )
+
+        word_app.Selection.Find.Execute(
+            FindText=find_strC,
+            ReplaceWith=replace_withC,
+            Replace=wd_replace,
+            Forward=True,
+            MatchCase=True,
+            MatchWholeWord=False,
+            MatchWildcards=True,
+            MatchSoundsLike=False,
+            MatchAllWordForms=False,
+            Wrap=wd_find_wrap,
+            Format=True,
+        )
+        word_app.Selection.Find.Execute(
+            FindText=find_strD,
+            ReplaceWith=replace_withD,
+            Replace=wd_replace,
+            Forward=True,
+            MatchCase=True,
+            MatchWholeWord=False,
+            MatchWildcards=True,
+            MatchSoundsLike=False,
+            MatchAllWordForms=False,
+            Wrap=wd_find_wrap,
+            Format=True,
+        )
+
+        # -- Replace str in shapes
+        # VBA SO reference: https://stackoverflow.com/a/26266598
+        # Loop through all the shapes
+        for i in range(word_app.ActiveDocument.Shapes.Count):
+            if word_app.ActiveDocument.Shapes(i + 1).TextFrame.HasText:
+                words = word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words
+                # Loop through each word. This method preserves formatting.
+                for j in range(words.Count):
+                    # If a word exists, replace the text of it, but keep the formatting.
+                    if word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text == find_str1:
+                        word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text = replace_with1
+
+                    if word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text == find_str2:
+                        word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text = replace_with2
+
+                    if word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text == find_str3:
+                        word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text = replace_with3
+
+                    if word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text == find_str4:
+                        word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text = replace_with4
+
+                    if word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text == find_str5:
+                        word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text = replace_with5
+
+                    if word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text == find_str6:
+                        word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text = replace_with6
+
+                    if word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text == find_str7:
+                        word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text = replace_with7
+
+                    if word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text == find_str8:
+                        word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text = replace_with8
+
+                    if word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text == find_str9:
+                        word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text = replace_with9
+
+                    if word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text == find_str10:
+                        word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text = replace_with10
+
+                    if word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text == find_str11:
+                        word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text = replace_with11
+
+                    if word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text == find_str12:
+                        word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text = replace_with12
+
+                    if word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text == find_str13:
+                        word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text = replace_with13
+
+                    if word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text == find_str:
+                        word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text = replace_with
+
+                    if word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text == find_strA:
+                        word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text = replace_withA
+
+                    if word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text == find_strB:
+                        word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text = replace_withB
+
+                    if word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text == find_strC:
+                        word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text = replace_withC
+
+                    if word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text == find_strD:
+                        word_app.ActiveDocument.Shapes(i + 1).TextFrame.TextRange.Words.Item(j + 1).Text = replace_withD
+
+        # Save the new file
+        output_path = output_dir / f"{doc_file.stem}_replaced{doc_file.suffix}"
+        word_app.ActiveDocument.SaveAs(str(output_path))
+        word_app.ActiveDocument.Close(SaveChanges=False)
+        #word_app.Application.Quit()
+
+except ValueError:
+    print(' ')
+    print('DISTRICT NOT FOUND! ')
