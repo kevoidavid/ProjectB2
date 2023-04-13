@@ -3,9 +3,11 @@ from pathlib import Path  # core python module
 YR = 2022
 import random
 import win32com.client  # pip install pywin32
-# get_inputs
+
 try:
 
+    # get_inputs
+    
     name = input('enter Place.. ')
     Main = name.upper()
     county = input('enter  name... ')
@@ -20,6 +22,8 @@ try:
     SL = input('enter sl... ')
     MM = input('enter Mums name... ')
     FF = input('enter fathers name... ')
+    
+    #ALL DATA
 
     KISII = ['KISII', 'NYANZA', 'KSI', 'Z.B MACHOME', '016', ' S.K MELI10 ']
     KWALE = ['KWALE', 'COAST', 'KWL', 'D.MATHEI', '018', ' ']
