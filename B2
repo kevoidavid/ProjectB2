@@ -1,6 +1,6 @@
 from pathlib import Path  # core python module
 
-YR = 2022
+YR = 2022 #YEAR
 import random
 import win32com.client  # pip install pywin32
 
